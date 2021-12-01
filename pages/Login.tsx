@@ -4,37 +4,15 @@ import React, { useState } from 'react';
 import { login as nextcloudLogin } from '../api/nextcloud/auth';
 
 const LoginPage: React.FC<{}> = () => {
-    const [ userLogin, setUserLogin ] = useState('');
-    const [ userPassword, setUserPassword ] = useState('');
-
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}> Hi! Please login to your nextcloud instance to continue </Text>
-            
-            <View style={styles.form}>
-                <View style={styles.inputSection}>
 
-                    <Text style={styles.inputLabel}> Login </Text>
-                    <TextInput
-                        style={styles.input}
-                        autoCapitalize={'none'}
-                        onChangeText={setUserLogin}
-                        value={userLogin}
-                        autoCorrect={false}
-                    />
-
-                    <Text style={styles.inputLabel}> Password </Text>
-                    <TextInput style={styles.input}
-                        autoCapitalize={'none'}
-                        secureTextEntry={true}
-                        onChangeText={setUserPassword}
-                        value={userPassword}
-                    />
-
-                </View>
+            <View>
+                <Text style={styles.title} > Authorization required </Text>
+                <Text style={styles.subtitle}> Authorize NMP to access your nextcloud account to start listening to your music! </Text>
                 <Button
-                 onPress={() => nextcloudLogin(userLogin, userPassword)}
-                 title={'Login'}
+                    onPress={() => nextcloudLogin()}
+                    title={'Login via OAuth2'}
                 />
             </View>
 
@@ -50,33 +28,16 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 22,
-        textAlign: 'center'
+        fontSize: 24,
+        textAlign: 'center',
+        marginBottom: 20
     },
 
-    inputSection: {
-        marginBottom: 20,
-        marginTop: 20,
+    subtitle: {
+        fontSize: 18,
+        textAlign: 'center',
+        marginBottom: 10
     },
-
-    inputLabel: {
-        marginTop: 30,
-        marginBottom: 10,
-        textTransform: 'uppercase',
-        fontSize: 15,
-        color: '#777'
-    },
-
-    input: {
-        borderBottomWidth: 2,
-        paddingBottom: 7,
-        borderBottomColor: 'rgba(0, 0, 0, .15)',
-        fontSize: 16
-    },
-
-    form: {
-        width: '80%'
-    }
 });
 
 export default LoginPage;
