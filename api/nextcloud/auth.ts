@@ -34,11 +34,5 @@ export const login = async () =>
         ]
     };
 
-    try {
-        const result = await authorize(oauthConfig);
-        console.log(result);
-    } catch (err) {
-        console.log(err);
-    }
-
+    return await authorize(oauthConfig);
 }
